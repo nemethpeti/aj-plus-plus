@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "AJ Investment Research Enhancer",
-  "version": "0.1.0",
-  "description": "Adds missing features to the AJ Investment Research dashboard. Feature 1: click a Ranking column header to sort the table by rank.",
+  "name": "AJ++",
+  "version": "0.2.0",
+  "description": "Adds missing features to the AJ Investment Research dashboard: sort by ranking, sort by upside potential, and hide the announcement banner.",
   "content_scripts": [
     {
       "matches": ["https://consolidated.ajinvestmentresearch.com/*"],
@@ -10,6 +10,14 @@
       "js": ["dashboard-sort.js"],
       "css": ["dashboard-sort.css"],
       "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.ajinvestmentresearch.com/*",
+        "https://ajinvestmentresearch.com/*"
+      ],
+      "css": ["hide-announcement-bar.css"],
+      "run_at": "document_start"
     }
   ]
 }

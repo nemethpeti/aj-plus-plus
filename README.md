@@ -1,15 +1,17 @@
 # AJ++
 
 A Chrome extension that adds missing quality-of-life features to the
-[AJ Investment Research](https://www.ajinvestmentresearch.com/) dashboard.
+[AJ Investment Research](https://www.ajinvestmentresearch.com/) site and its
+dashboard.
 
 > Unofficial community project — not affiliated with AJ Investment Research.
 > It only rearranges what your own logged-in browser already displays; it does
 > not scrape, store, or transmit any data.
 
-The dashboard table on that page is actually a Plotly Dash app embedded as an
-iframe from `https://consolidated.ajinvestmentresearch.com/`, so the content
-script targets that origin with `all_frames: true`.
+The dashboard table is not part of the main page: it is a Plotly Dash app
+embedded as an iframe from `https://consolidated.ajinvestmentresearch.com/`,
+so the sorting content script targets that origin with `all_frames: true`.
+A second, CSS-only content script runs on the main site.
 
 ## Features
 
@@ -27,6 +29,15 @@ script targets that origin with `all_frames: true`.
 
 An ▲/▼ indicator on the header shows the active sort column and direction.
 
+3. **Hide the announcement bar** — the pink Ghost announcement bar pinned to the
+   top of every page is hidden, reclaiming ~70px of vertical space. It sits in
+   normal document flow, so the page simply closes the gap.
+
+   Note: that bar also carries the site's anti-fraud notice (AJ Investment
+   Research communicates only via its private X account or its research email,
+   and never requests funds). Delete `hide-announcement-bar.css` from the
+   manifest if you would rather keep seeing it.
+
 ## Install (unpacked)
 
 1. Open `chrome://extensions`
@@ -41,6 +52,7 @@ After editing files, click the reload icon on the extension card and refresh the
 - `extension/manifest.json` — MV3 manifest
 - `extension/dashboard-sort.js` — content script (sorting)
 - `extension/dashboard-sort.css` — header hover/sort indicator styles
+- `extension/hide-announcement-bar.css` — hides the site-wide announcement bar
 
 ## License
 
